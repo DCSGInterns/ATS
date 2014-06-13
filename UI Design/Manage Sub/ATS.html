@@ -29,7 +29,7 @@
 						<div class="form-group" id="region"> 
 							<label class="col-sm-2 control-label">REGION</label> 
 							<div class="col-sm-10">
-								<select  class="form-control" onchange="update_country(this.value)">
+								<select  class="form-control" id="region_value" onchange="update_country(this.value)">
 									<option value="NONE" selected="selected">...</option>
 									<option value="APJ">APJ</option>
 									<option value="EMEA">EMEA</option>
@@ -91,7 +91,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="destroy_data()">CANCEL</button>
 					<button type="button" class="btn btn-primary">SAVE CHANGES</button>
 				</div>
 			</div>
@@ -112,8 +112,9 @@
 		<div class="row" id="header_row">
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">REGION</div>
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">COUNTRY</div>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG</div>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKU NAME</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">CATALOG</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">SKU CODE</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKU DESC</div>
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 1</div>
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 2</div>
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 3</div>
@@ -125,8 +126,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -137,8 +139,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -149,8 +152,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -161,8 +165,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -173,8 +178,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -185,8 +191,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -197,8 +204,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
@@ -209,8 +217,9 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">catalog_a</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Inspiron</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Awesome Laptop</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>

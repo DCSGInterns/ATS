@@ -12,9 +12,9 @@ var toggle_country=0;
   else if(toggle_country==1)
   {
    $('#country').fadeOut('slow');
-	toggle_deg=0;
+	toggle_country=0;
    $('#catalog').fadeOut('slow');
-	toggle_deg=0;
+	toggle_catalog=0;
    $('#subscribed_items').fadeOut('slow');
 	toggle_items=0;
 	
@@ -36,7 +36,7 @@ var toggle_country=0;
   else if(toggle_catalog==1)
   {
    $('#catalog').fadeOut('slow');
-	toggle_deg=0;  
+	toggle_catalog=0;  
    $('#subscribed_items').fadeOut('slow');
 	toggle_items=0;
 	
@@ -46,8 +46,6 @@ var toggle_country=0;
  }
  
  var toggle_items=0;
- var to_delete;
- 
  function update_items(str)
  {
   if(str.toLowerCase() != "none")
@@ -60,9 +58,22 @@ var toggle_country=0;
   {
    $('#subscribed_items').fadeOut('slow');
 	toggle_items=0;
-
-	to_delete = document.getElemetById('subcribed_items');
-	
     return;
   }
+ }
+ 
+ 
+ function destroy_data()
+ {
+  document.getElementById('region_value').value="NONE";  	
+  document.getElementById('country_value').value="NONE";  	
+  document.getElementById('catalog_value').value="NONE";
+
+  $('#country').fadeOut('slow');
+	toggle_country=0;
+   $('#catalog').fadeOut('slow');
+	toggle_catalog=0;
+   $('#subscribed_items').fadeOut('slow');
+	toggle_items=0;
+
  }
