@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ATS</title>
+	<link rel="icon" href="img/Dell2.ico" type="image/x-icon">
+	
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<!-- Bootstrap --> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<!-- Specific Styling -->
+	<link href="css/header_body.css" rel="stylesheet"  type="text/css">
+	<link href="css/main.css" rel="stylesheet"  type="text/css">
+	<link href="css/modal.css" rel="stylesheet"  type="text/css">
+</head>
+
+<body>
+    <!-- PopOver ---------------------------------------------------------------------------------------------------->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">ADD/EDIT SUBSCRIPTION</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form"> 
+						<div class="form-group" id="region"> 
+							<label class="col-sm-2 control-label">REGION</label> 
+							<div class="col-sm-10">
+								<select  class="form-control" onchange="update_country(this.value)">
+									<option value="NONE" selected="selected">...</option>
+									<option value="APJ">APJ</option>
+									<option value="EMEA">EMEA</option>
+									<option value="AMERICAS">AMERICAS</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="country"> 
+							<label class="col-sm-2 control-label">COUNTRY</label> 
+							<div class="col-sm-10">
+								<select class="form-control" id="country_value" onchange="update_catalog(this.value)">
+									<option value="NONE" selected="selected">...</option>
+									<option value="APJ">APJ</option>
+									<option value="EMEA">EMEA</option>
+									<option value="AMERICAS">AMERICAS</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="catalog"> 
+							<label class="col-sm-2 control-label">CATALOG</label> 
+							<div class="col-sm-10">
+								<select class="form-control" id="catalog_value" onchange="update_items(this.value)">
+									<option value="NONE" selected="selected">...</option>
+									<option value="APJ">APJ</option>
+									<option value="EMEA">EMEA</option>
+									<option value="AMERICAS">AMERICAS</option>
+								</select>
+							</div>
+						</div>
+						<div id="subscribed_items">
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKEW NAME</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 1</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 2</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">EVENT 3</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">EVENT 4</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">EVENT 5</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">EVENT 6</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKEW 1</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><input type="checkbox"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKEW 1</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><input type="checkbox"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><input type="checkbox"></div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+					<button type="button" class="btn btn-primary">SAVE CHANGES</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!--The actual page header --------------------------------------------------------------------------------------->
+	<div id="header">
+		<div id="header_content">
+			<img src="img/Dell_logo.png">
+			<div id="header_title">Subscriptions</div> 
+		</div>
+	</div>
+	
+	<!-- The body content --------------------------------------------------------------------------------------------->
+	<div class="container" id="wrapper"> 
+		<div class="row" id="header_row">
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">REGION</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">COUNTRY</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKEW NAME</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 1</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 2</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 3</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 4</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 5</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">EVENT 6</div>
+		</div>
+		<div id="content_rows">
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">APJ</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">India</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">CATALOG-1</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Inspiron</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-ok"></span></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="glyphicon glyphicon-remove"></span></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="add_edit">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD/EDIT</button>
+	</div>
+	
+	<div id="footer">
+	</div>
+
+<script src="js/jquery.js" type="text/javascript"> </script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/dynamic.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

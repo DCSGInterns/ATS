@@ -1,0 +1,37 @@
+/* modyfing the popover look and feel*/
+
+.modal-body,.modal_footer
+{
+ padding : 5px;
+}
+.form-horizontal
+{
+ padding : 15px 15px 0px 0px;
+ margin : 15px 15px 0px 0px;
+}
+#country, #catalog, #subscribed_items
+{display : none;}
+
+.popover_row
+{
+ width : 100%;
+}
+.popover_col
+{
+ width : 13%;
+ top : -10%;
+ left : 20%;
+}
+#subscribed_items
+{
+ width : 100%;
+ padding : 10px;
+}
+#subscribed_items>div
+{
+ text-align : center;
+}
+#myModal
+{
+ min-width : 500px;
+}

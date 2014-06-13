@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src : url(Roboto.woff);
+}
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 400;
+  src: url(Dosis.woff)
+}
+#wrapper
+{
+ margin-top : 10px;
+ font-family: 'Dosis', sans-serif;
+ font-size : 16px;
+}
+.container
+{
+ background-color : white;
+ box-shadow : 1px 1px 5px black;
+}
+#header_row
+{
+ /*background-color:#0085c3;#FF7519;
+ color : white;*/
+ font-family: 'Roboto Condensed', sans-serif;
+ font-size: 18px;
+ padding : 10px 0px;
+ text-align : center;
+}
+#content_rows>div
+{
+ text-align : center;
+ padding-bottom : 5px;
+}
+#add_edit
+{
+ text-align : center;
+ font-family: 'Roboto Condensed', sans-serif;
+ font-size: 18px;
+ width : 100px; 
+ color : white;
+ margin : 10px auto;
+}
+.btn
+{
+ margin : 0px;
+}
+#content_rows>.row:nth-child(2n+1)
+{
+ background-color : #DDFFFF;
+}
+#content_rows>.row:nth-child(2n)
+{
+ background-color : #EEFFFF;
+}
