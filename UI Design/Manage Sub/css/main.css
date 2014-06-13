@@ -18,9 +18,12 @@
 }
 .container
 {
+ width: 80%;
  background-color : white;
  box-shadow : 1px 1px 5px black;
 }
+
+
 #header_row
 {
  /*background-color:#0085c3;#FF7519;
