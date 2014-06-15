@@ -30,3 +30,27 @@ body
  float : right;
  margin-top : 4px;
 }
+#footer
+{
+ background-color: #0085c3;
+ height: 40px;
+ color : white;
+ font-family : 'Trebuchet MS'sans-serif;
+ font-size : 12px;
+ position : absolute;
+ bottom : 0px;
+ width : 100%;
+ min-width : 1000px;
+ }
+ #footer_content
+ {
+  width: 300px;
+  margin : 0px auto;
+  padding : 10px;
+ }
+ #footer>div>div
+ {
+  float : left;
+  padding : 0px  20px;
+  border-left : 1px solid white;
+ }
