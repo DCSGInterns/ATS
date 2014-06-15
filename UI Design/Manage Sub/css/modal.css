@@ -22,10 +22,10 @@
  top : -10%;
  left : 20%;
 }
-#subscribed_items
+#subscribed_items > .row, #popover_table_content>.row
 {
  width : 100%;
- padding : 10px;
+ margin-left : 2%; 
 }
 #subscribed_items>div
 {
@@ -34,4 +34,12 @@
 #myModal
 {
  min-width : 500px;
+}
+#popover_table_content>.row:nth-child(2n+1)
+{
+ background-color : #EFEFFF;
+}
+#popover_table_content>.row:nth-child(2n)
+{
+ background-color : #DFDFFF;
 }
