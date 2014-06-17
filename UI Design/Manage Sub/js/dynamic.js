@@ -4,11 +4,11 @@ var toggle_country=0;
  function update_country(str)
  {
 
-  if(str.toLowerCase() != "none")
+  if(str.toLowerCase() != "")
   {
 	$('#country').fadeIn('slow');
 	toggle_country=1;
-    update_catalog("none");
+    update_catalog("");
     return;
   }
   else if(toggle_country==1)
@@ -20,8 +20,8 @@ var toggle_country=0;
    $('#subscribed_items').fadeOut('slow');
 	toggle_items=0;
 	
-	document.getElementById('country_value').value="NONE";  	
-	document.getElementById('catalog_value').value="NONE";  	
+	document.getElementById('country_value').value="";  	
+	document.getElementById('catalog_value').value="";  	
     return;
   }
  }
@@ -29,11 +29,11 @@ var toggle_country=0;
  var toggle_catalog=0;
  function update_catalog(str)
  {
-  if(str.toLowerCase() != "none")
+  if(str.toLowerCase() != "")
   {
 	$('#catalog').fadeIn('slow');
 	toggle_catalog=1;
-    update_items("none");
+    update_items("");
     return;
   }
   else if(toggle_catalog==1)
@@ -51,7 +51,7 @@ var toggle_country=0;
  var toggle_items=0;
  function update_items(str)
  {
-  if(str.toLowerCase() != "none")
+  if(str.toLowerCase() != "")
   {
 	$('#subscribed_items').fadeIn('slow');
 	toggle_items=1;
@@ -68,9 +68,9 @@ var toggle_country=0;
  
  function destroy_data()
  {
-  document.getElementById('region_value').value="NONE";  	
-  document.getElementById('country_value').value="NONE";  	
-  document.getElementById('catalog_value').value="NONE";
+  document.getElementById('region_value').value="";  	
+  document.getElementById('country_value').value="";  	
+  document.getElementById('catalog_value').value="";
 
   $('#country').fadeOut('slow');
 	toggle_country=0;
