@@ -3,10 +3,12 @@
 var toggle_country=0;
  function update_country(str)
  {
+
   if(str.toLowerCase() != "none")
   {
 	$('#country').fadeIn('slow');
 	toggle_country=1;
+    update_catalog("none");
     return;
   }
   else if(toggle_country==1)
@@ -31,6 +33,7 @@ var toggle_country=0;
   {
 	$('#catalog').fadeIn('slow');
 	toggle_catalog=1;
+    update_items("none");
     return;
   }
   else if(toggle_catalog==1)
