@@ -4,13 +4,68 @@ ATS.controller('ATSCtrl', function ($scope) {
 	$scope.regionSelected;
 	$scope.countrySelected;
 	$scope.catalogSelected;
+	$scope.regionIdToName=function(id)
+	{
+		switch(id)
+		{
+			case 1:
+				return "AMERICAS";
+			case 2:
+				return "APJ";
+			case 3:
+				return "EMEA";
+				
+		}
+	}
+	$scope.activeToGlyph=function(active)
+	{
+		switch(active)
+		{
+			case 1:
+				return "ok";
+			case 0:
+				return "remove";
+		}
+	}
+	$scope.subscriptionData={
+			"subscriptions": [
+			{
+				"SkuId":"222-2345",
+				"SkuDesc":"Some description",
+				"RegionCode":1,
+				"BUCode":11,
+				"BUName":"US",
+				"CatalogID": 111,
+				"CatalogName": "US-CNS",
+				"Events":[
+					{
+						"EventName":"Sell Action Changed",
+						"EventID":1,
+						"IsActive":1
+					},
+					{
+						"EventName":"Activated or Deactivated",
+						"EventID":2,
+						"IsActive":0
+					},
+					{
+						"EventName":"Lead Time Changed",
+						"EventID":3,
+						"IsActive":0
+					}
+				]
+			}
+		]
+	}
 	$scope.formData={
 	"regions": [
 			{
 				"name": "APJ",
+				"code": 1,
 				"countries": [
 					{
 						"name": "India",
+						"code": 11,
 						"catalogs": [
 							{
 								"name": "cat-1",
@@ -67,6 +122,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 					},
 					{
 						"name": "China",
+						"code": 12,
 						"catalogs": [
 							{
 								"name": "cat-4",
@@ -123,6 +179,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 					},
 					{
 						"name": "Japan",
+						"code": 13,
 						"catalogs": [
 							{
 								"name": "cat-7",
@@ -181,9 +238,11 @@ ATS.controller('ATSCtrl', function ($scope) {
 			},
 			{
 				"name": "EMEA",
+				"code": 2,
 				"countries": [
 					{
 						"name": "England",
+						"code": 21,
 						"catalogs": [
 							{
 								"name": "cat-10",
@@ -240,6 +299,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 					},
 					{
 						"name": "France",
+						"code": 22,
 						"catalogs": [
 							{
 								"name": "cat-13",
@@ -296,6 +356,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 					},
 					{
 						"name": "Germany",
+						"code": 23,
 						"catalogs": [
 							{
 								"name": "cat-16",
@@ -354,9 +415,11 @@ ATS.controller('ATSCtrl', function ($scope) {
 			},
 			{
 				"name": "AMERICAS",
+				"code": 1,
 				"countries": [
 					{
 						"name": "US",
+						"code": 31,
 						"catalogs": [
 							{
 								"name": "cat-19",
@@ -413,6 +476,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 					},
 					{
 						"name": "Brazil",
+						"code": 32,
 						"catalogs": [
 							{
 								"name": "cat-22",
@@ -469,6 +533,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 					},
 					{
 						"name": "Canada",
+						"code": 33,
 						"catalogs": [
 							{
 								"name": "cat-25",
@@ -526,5 +591,5 @@ ATS.controller('ATSCtrl', function ($scope) {
 				]
 			}
 		]
-	};
+	}
 });
