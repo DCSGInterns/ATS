@@ -69,6 +69,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-1",
+								"code": 111,
 								"SKUs": [
 									{
 										"code": "code11",
@@ -86,6 +87,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-2",
+								"code": 112,
 								"SKUs": [
 									{
 										"code": "code21",
@@ -103,6 +105,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-3",
+								"code": 113,
 								"SKUs": [
 									{
 										"code": "code31",
@@ -126,6 +129,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-4",
+								"code": 121,
 								"SKUs": [
 									{
 										"code": "code41",
@@ -143,6 +147,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-5",
+								"code": 122,
 								"SKUs": [
 									{
 										"code": "code51",
@@ -160,6 +165,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-6",
+								"code": 123,
 								"SKUs": [
 									{
 										"code": "code61",
@@ -183,6 +189,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-7",
+								"code": 131,
 								"SKUs": [
 									{
 										"code": "code71",
@@ -200,6 +207,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-8",
+								"code": 132,
 								"SKUs": [
 									{
 										"code": "code81",
@@ -217,6 +225,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-9",
+								"code": 133,
 								"SKUs": [
 									{
 										"code": "code91",
@@ -246,6 +255,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-10",
+								"code": 211,
 								"SKUs": [
 									{
 										"code": "code101",
@@ -263,6 +273,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-11",
+								"code": 212,
 								"SKUs": [
 									{
 										"code": "code111",
@@ -280,6 +291,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-12",
+								"code": 213,
 								"SKUs": [
 									{
 										"code": "code121",
@@ -303,6 +315,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-13",
+								"code": 221,
 								"SKUs": [
 									{
 										"code": "code131",
@@ -320,6 +333,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-14",
+								"code": 222,
 								"SKUs": [
 									{
 										"code": "code141",
@@ -337,6 +351,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-15",
+								"code": 223,
 								"SKUs": [
 									{
 										"code": "code151",
@@ -360,6 +375,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-16",
+								"code": 231,
 								"SKUs": [
 									{
 										"code": "code161",
@@ -377,6 +393,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-17",
+								"code": 232,
 								"SKUs": [
 									{
 										"code": "code171",
@@ -394,6 +411,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-18",
+								"code": 233,
 								"SKUs": [
 									{
 										"code": "code181",
@@ -423,6 +441,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-19",
+								"code": 311,
 								"SKUs": [
 									{
 										"code": "code191",
@@ -440,6 +459,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-20",
+								"code": 312,
 								"SKUs": [
 									{
 										"code": "code201",
@@ -457,6 +477,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-21",
+								"code": 313,
 								"SKUs": [
 									{
 										"code": "code211",
@@ -480,6 +501,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-22",
+								"code": 321,
 								"SKUs": [
 									{
 										"code": "code221",
@@ -497,6 +519,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-23",
+								"code": 322,
 								"SKUs": [
 									{
 										"code": "code231",
@@ -514,6 +537,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-24",
+								"code": 323,
 								"SKUs": [
 									{
 										"code": "code241",
@@ -537,6 +561,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 						"catalogs": [
 							{
 								"name": "cat-25",
+								"code": 331,
 								"SKUs": [
 									{
 										"code": "code251",
@@ -554,6 +579,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-26",
+								"code": 332,
 								"SKUs": [
 									{
 										"code": "code261",
@@ -571,6 +597,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 							},
 							{
 								"name": "cat-27",
+								"code": 333,
 								"SKUs": [
 									{
 										"code": "code271",
