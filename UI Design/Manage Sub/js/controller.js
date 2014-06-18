@@ -1,19 +1,23 @@
+
 var ATS = angular.module('ATS', []);
 
 ATS.controller('ATSCtrl', function ($scope) {
 	$scope.regionSelected;
 	$scope.countrySelected;
 	$scope.catalogSelected;
+	$scope.box1;
+	$scope.box2;
+	$scope.box3;
 	$scope.regionIdToName=function(id)
 	{
 		switch(id)
 		{
 			case 1:
-				return "AMERICAS";
-			case 2:
 				return "APJ";
-			case 3:
+			case 2:
 				return "EMEA";
+			case 3:
+				return "AMERICAS";
 				
 		}
 	}
@@ -27,36 +31,10 @@ ATS.controller('ATSCtrl', function ($scope) {
 				return "remove";
 		}
 	}
-	$scope.subscriptionData={
-			"subscriptions": [
-			{
-				"SkuId":"222-2345",
-				"SkuDesc":"Some description",
-				"RegionCode":1,
-				"BUCode":11,
-				"BUName":"US",
-				"CatalogID": 111,
-				"CatalogName": "US-CNS",
-				"Events":[
-					{
-						"EventName":"Sell Action Changed",
-						"EventID":1,
-						"IsActive":1
-					},
-					{
-						"EventName":"Activated or Deactivated",
-						"EventID":2,
-						"IsActive":0
-					},
-					{
-						"EventName":"Lead Time Changed",
-						"EventID":3,
-						"IsActive":0
-					}
-				]
-			}
-		]
-	}
+	$scope.subscriptionData={"subscriptions":[]};
+	$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+	//$scope.objCopy=function()
+	
 	$scope.formData={
 	"regions": [
 			{
@@ -619,4 +597,107 @@ ATS.controller('ATSCtrl', function ($scope) {
 			}
 		]
 	}
-});
+	
+	$scope.search=function(skuId){
+	for(i=0,len=$scope.subscriptionDataCopy.subscriptions.length;i<len;i++)
+	{
+		if($scope.subscriptionDataCopy.subscriptions[i].SkuId==skuId)
+		{return($scope.subscriptionDataCopy.subscriptions[i]);}
+	}
+	return null;
+	}
+	$scope.findIndex=function(skuId){
+	for(i=0,len=$scope.subscriptionDataCopy.subscriptions.length;i<len;i++)
+	{
+		if($scope.subscriptionDataCopy.subscriptions[i].SkuId==skuId)
+		{return(i);}
+	}
+	return -1;
+	
+	}
+	$scope.testValue="hello";
+	$scope.test=function(){
+		$scope.testValue="hi";
+		//$scope.subscriptionData.subscriptions.push({});
+		//$scope.subscriptionData.subscriptions[1]['SkuId']="12345";
+
+	}
+	$scope.clearData=function(){
+	//destroy_data();
+	//$scope.testValue="data";
+	$scope.regionSelected="";
+	$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+	destroy_data();
+	}
+	$scope.editSubscriptions=function(id,sku,region,country,catalog,event) {
+	
+	if(id==true)
+	{
+		//$scope.testValue="here";
+		if($scope.search(sku.code)!=null)
+		{
+			//$scope.testValue="now";
+			var subscription=$scope.search(sku.code);
+		 	subscription.Events[event].IsActive=1;
+		}
+		else
+		{
+			var subscription = {'SkuId': sku.code, 
+								'SkuDesc': sku.description,
+								'RegionCode': region.code,
+								'BUCode': country.code,
+								'BUName': country.name,
+								'CatalogID': catalog.code,
+								'CatalogName': catalog.name,
+								'Events': [
+									{
+										'EventName': "Sell Action Changed",
+										'EventID': 1,
+										'IsActive': 0
+									},
+									{
+										'EventName': "Activated or Deactivated",
+										'EventID': 2,
+										'IsActive': 0
+									},
+									{
+										'EventName': "Lead Time Changed",
+										'EventID': 3,
+										'IsActive': 0
+									}
+								]};
+			subscription.Events[event].IsActive=1;
+			$scope.subscriptionDataCopy.subscriptions.push(subscription);				
+		}
+	}
+	else
+	{
+	var ssku=$scope.search(sku.code);
+	ssku.Events[event].IsActive=0;
+	if(ssku.Events[0].IsActive==0 && ssku.Events[1].IsActive==0 && ssku.Events[2].IsActive==0)
+	{
+	var index=$scope.findIndex(sku.code);
+	$scope.subscriptionDataCopy.subscriptions.splice(index,1);
+	}
+	}
+	
+	}
+	$scope.save=function(){
+	$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
+	}
+	$scope.setBoxes=function(skuId){
+	
+	$scope.box1=false;
+	$scope.box2=false;
+	$scope.box3=false;
+	if($scope.search(skuId)!=null) 
+	{
+		if($scope.search(skuId).Events[0].IsActive==1)
+		 {$scope.box1=true;}
+		if($scope.search(skuId).Events[1].IsActive==1)
+		 {$scope.box2=true;}
+		if($scope.search(skuId).Events[2].IsActive==1)
+		 {$scope.box3=true;}
+	}
+	}
+	});
