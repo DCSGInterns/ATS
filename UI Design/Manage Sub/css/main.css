@@ -19,10 +19,8 @@
 
 #edit-button
 {
-float: right;
-position: relative;
-top: 2%;
-left: -2%;
+	float : right;
+	margin : 5px;
 }
 #table
 {
@@ -78,4 +76,16 @@ left: -2%;
 #table_content>.row:nth-child(2n)
 {
  background-color :#EEFFFF;
+}
+#search_sku>div>span
+{
+	position : relative;
+	top : -1%;
+}
+.input-group{
+	width: 25%;
+	float: right;
+	margin-right: 2%;
+	margin-bottom: 10px;
+	min-width: 135px;
 }
