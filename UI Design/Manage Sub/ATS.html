@@ -99,8 +99,9 @@
 		</div>
 	</div>
 	
+	<div id="loader_part" ng-show="loader" ng-show="saving"><span ng-show="saving">Saving Changes</span><span ng-hide="saving">Fetching Data</span><br/><img src="img/11.gif"/></div>
 	<!-- The body content ------------------------------------------------------------------------------------------- -->
-	<div id="wrapper">
+	<div id="wrapper" ng-hide="loader">
 
 		<button class="btn btn-primary" id="edit-button" ng-click="changeEditState()" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions)"><span class="glyphicon glyphicon-pencil"></span></button>
 

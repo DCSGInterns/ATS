@@ -17,6 +17,13 @@
  box-shadow : 1px 1px 5px black;
 }
 
+#loader_part
+{
+font-family: 'Roboto Condensed', sans-serif;
+text-align: center;
+font-size: 16px;
+}
+
 #edit-button
 {
 	float : right;

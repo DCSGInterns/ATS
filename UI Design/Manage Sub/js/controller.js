@@ -1,7 +1,7 @@
 
 var ATS = angular.module('ATS', []);
 
-ATS.controller('ATSCtrl', function ($scope) {
+ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.regionSelected;
 	$scope.countrySelected;
 	$scope.catalogSelected;
@@ -9,6 +9,8 @@ ATS.controller('ATSCtrl', function ($scope) {
 	$scope.box2;
 	$scope.box3;
 	$scope.box;
+	$scope.loader=false;
+	$scope.saving=false;
 	$scope.iseditable=false;
 	$scope.subscriptionData={"subscriptions":[]};
 	$scope.subscriptionDataCopy;
@@ -1615,7 +1617,17 @@ ATS.controller('ATSCtrl', function ($scope) {
 	$scope.destroyCopy();
 	$scope.iseditable=false;
 	//$scope.regionSelected="";
-	destroy_data();
+	$scope.loader=true;
+	$scope.saving=true;
+		var saveSubs=function(){
+		$scope.saving=false;
+		}
+		var fetchData=function(){
+		$scope.loader=false;
+		}
+	
+	$timeout(saveSubs,1000);
+	$timeout(fetchData,2000);
 	}
 	$scope.setBoxes=function(skuId){
 	
