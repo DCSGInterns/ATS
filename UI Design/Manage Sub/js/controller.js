@@ -8,6 +8,38 @@ ATS.controller('ATSCtrl', function ($scope) {
 	$scope.box1;
 	$scope.box2;
 	$scope.box3;
+	$scope.box;
+	$scope.iseditable=false;
+	$scope.subscriptionData={"subscriptions":[]};
+	$scope.subscriptionDataCopy;
+	$scope.isEmpty=function(x){
+	if(x.length==0)
+	return true;
+	else
+	return false;
+	}
+	$scope.createCopy=function(){
+	$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+	}
+	$scope.destroyCopy=function(){
+	$scope.subscriptionDataCopy={"subscriptions":[]};
+	}
+	$scope.changeEditState=function(){
+	$scope.createCopy();
+	if($scope.iseditable==false)
+	{
+	$scope.iseditable=true;
+	//$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+	}
+	else
+	$scope.iseditable=false;
+	}
+	$scope.setBox=function(isActive){
+	$scope.box=false;
+	if(isActive==1)
+	$scope.box=true;
+	}
+	
 	$scope.regionIdToName=function(id)
 	{
 		switch(id)
@@ -31,9 +63,6 @@ ATS.controller('ATSCtrl', function ($scope) {
 				return "remove";
 		}
 	}
-	$scope.subscriptionData={"subscriptions":[]};
-	$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
-	//$scope.objCopy=function()
 	
 	$scope.formData={
 	"regions": [
@@ -625,10 +654,30 @@ ATS.controller('ATSCtrl', function ($scope) {
 	$scope.clearData=function(){
 	//destroy_data();
 	//$scope.testValue="data";
+	$scope.destroyCopy();
+	//$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+	$scope.iseditable=false;
 	$scope.regionSelected="";
-	$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
 	destroy_data();
 	}
+	$scope.editCurrentSubscriptions=function(id,sub,eventId) {
+	var event=eventId-1;
+	if(id==true)
+	{
+		 	sub.Events[event].IsActive=1;
+	}
+	else
+	{
+	sub.Events[event].IsActive=0;
+	if(sub.Events[0].IsActive==0 && sub.Events[1].IsActive==0 && sub.Events[2].IsActive==0)
+	{
+	var index=$scope.findIndex(sub.SkuId);
+	$scope.subscriptionDataCopy.subscriptions.splice(index,1);
+	}
+	}
+	
+	}
+	
 	$scope.editSubscriptions=function(id,sku,region,country,catalog,event) {
 	
 	if(id==true)
@@ -684,6 +733,10 @@ ATS.controller('ATSCtrl', function ($scope) {
 	}
 	$scope.save=function(){
 	$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
+	$scope.destroyCopy();
+	$scope.iseditable=false;
+	//$scope.regionSelected="";
+	destroy_data();
 	}
 	$scope.setBoxes=function(skuId){
 	

@@ -16,6 +16,14 @@
  background-color : white;
  box-shadow : 1px 1px 5px black;
 }
+
+#edit-button
+{
+float: right;
+position: relative;
+top: 2%;
+left: -2%;
+}
 #table
 {
  margin-top : 10px;
@@ -45,10 +53,24 @@
  color : white;
  margin : 10px auto;
 }
+#edit_in
+{
+ text-align : center;
+ font-family: 'Roboto Condensed', sans-serif;
+ font-size: 18px;
+ color : white;
+ margin : 10px auto;
+}
+
 #add_edit > .btn
 {
  box-shadow  :1px 1px 5px black;
 }
+#edit_in > .btn
+{
+ box-shadow  :1px 1px 5px black;
+}
+
 #table_content>.row:nth-child(2n+1)
 {
  background-color :#DDFFFF;

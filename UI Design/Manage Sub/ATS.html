@@ -79,7 +79,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" ng-click="clearData()" data-dismiss="modal">CANCEL</button>
-					<button type="button" class="btn btn-primary" ng-click="save()">SAVE CHANGES</button>
+					<button type="button" class="btn btn-primary" ng-click="save()" data-dismiss="modal">SAVE CHANGES</button>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,8 @@
 	
 	<!-- The body content ------------------------------------------------------------------------------------------- -->
 	<div id="wrapper">
-		<div class="container" id="table"> 
+	    <button id="edit-button" ng-click="changeEditState()" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions)"><span class="glyphicon glyphicon-pencil"></span></button>
+		<div class="container" id="table" ng-hide="isEmpty(subscriptionData.subscriptions)"> 
 			<div class="row" id="table_header">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">REGION</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">COUNTRY</div>
@@ -106,7 +107,8 @@
 				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Activated or Deactivated</div>
 				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Lead Time Changed</div>
 			</div>
-			<div id="table_content">
+			<div ng-hide="iseditable">
+			  <div id="table_content">
 				<div class="row" ng-repeat="subscription in subscriptionData.subscriptions">
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{regionIdToName(subscription.RegionCode)}}</div>
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{subscription.BUName}}</div>
@@ -115,11 +117,33 @@
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{subscription.SkuDesc}}</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="event in subscription.Events"><span class="glyphicon glyphicon-{{activeToGlyph(event.IsActive)}}"></span></div>
 				</div>
+			  </div>
+			</div>  
+			<div ng-show="iseditable">
+			  <div id="table_content">
+				<div class="row" ng-repeat="subscription in subscriptionDataCopy.subscriptions">
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{regionIdToName(subscription.RegionCode)}}</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{subscription.BUName}}</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{subscription.CatalogName}}</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{subscription.SkuId}}</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{subscription.SkuDesc}}</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="event in subscription.Events">{{setBox(event.IsActive)}}<input type="checkbox" ng-model="box" ng-change="editCurrentSubscriptions(box,subscription,event.EventID)"></div>
+				</div>
+			  </div>
 			</div>
 		</div>
 		
-		<div id="add_edit">
-			<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD/EDIT</button>
+		<div id="add_edit" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions)">
+			<button class="btn btn-primary" data-toggle="modal" ng-click="createCopy()" data-target="#myModal">ADD/EDIT</button>
+		</div>
+		
+		<div id="add_edit" ng-show="isEmpty(subscriptionData.subscriptions)">
+			<button class="btn btn-primary" data-toggle="modal" ng-click="createCopy()" data-target="#myModal">ADD</button>
+		</div>
+		
+		<div id="edit_in" ng-show="iseditable">
+			<button class="btn btn-default" ng-click="clearData()">CANCEL</button> 
+			<button class="btn btn-primary" ng-click="save()">SAVE CHANGES</button>
 		</div>
 	</div>
 	
