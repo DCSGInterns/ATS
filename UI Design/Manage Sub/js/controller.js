@@ -23,6 +23,7 @@ ATS.controller('ATSCtrl', function ($scope) {
 	}
 	$scope.destroyCopy=function(){
 	$scope.subscriptionDataCopy={"subscriptions":[]};
+	$scope.searchText="";
 	}
 	$scope.changeEditState=function(){
 	$scope.createCopy();
