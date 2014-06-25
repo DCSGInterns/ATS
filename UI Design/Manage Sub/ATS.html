@@ -95,17 +95,29 @@
 	<div id="header">
 		<div id="header_content">
 			<img src="img/Dell_logo.png">
+			<div id="user" ng-hide="userNotSelected">Welcome, {{userSelected.name}}|<a ng-click="logout()">Logout</a></div>
 			<div id="header_title">Subscriptions</div> 
 		</div>
 	</div>
 	
-	<div id="loader_part" ng-show="loader" ng-show="saving"><span ng-show="saving">Saving Changes</span><span ng-hide="saving">Fetching Data</span><br/><img src="img/11.gif"/></div>
+	<div id="loader_part" ng-show="loader" ng-show="saving"><span ng-show="saving">Saving Changes</span><span ng-show="fetching">Fetching Data</span><br/><img src="img/11.gif"/></div>
 	<!-- The body content ------------------------------------------------------------------------------------------- -->
 	<div id="wrapper" ng-hide="loader">
 
-		<button class="btn btn-primary" id="edit-button" ng-click="changeEditState()" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions)"><span class="glyphicon glyphicon-pencil"></span></button>
+		<!-- The User Selection -->
+		<div class="row" id="user-select" ng-show="userNotSelected">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="select-text">Select User: </div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="select-part">
+				<select class="form-control" ng-model="userSelected" ng-options="user.name for user in users"></select>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<button class="btn btn-primary" ng-click="login()">Login</button>
+			</div>
+		</div>
 
-		<div class="container" id="table" ng-hide="isEmpty(subscriptionData.subscriptions)"> 
+		<button class="btn btn-primary" id="edit-button" ng-click="changeEditState()" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions) || userNotSelected"><span class="glyphicon glyphicon-pencil"></span></button>
+
+		<div class="container" id="table" ng-hide="isEmpty(subscriptionData.subscriptions) || userNotSelected"> 
 			<div class="row" id="table_header">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">REGION</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">COUNTRY</div>
@@ -142,11 +154,11 @@
 			</div>
 		</div>
 
-		<div id="add_edit" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions)">
+		<div id="add_edit" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions) || userNotSelected">
 			<button class="btn btn-primary" data-toggle="modal" ng-click="createCopy()" data-target="#myModal">ADD/EDIT</button>
 		</div>
 		
-		<div id="add_edit" ng-show="isEmpty(subscriptionData.subscriptions)">
+		<div id="add_edit" ng-show="isEmpty(subscriptionData.subscriptions) && !userNotSelected">
 			<button class="btn btn-primary" data-toggle="modal" ng-click="createCopy()" data-target="#myModal">ADD SUBSCRIPTIONS</button>
 		</div>
 		

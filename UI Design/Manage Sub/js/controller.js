@@ -2,6 +2,8 @@
 var ATS = angular.module('ATS', []);
 
 ATS.controller('ATSCtrl', function ($scope,$timeout) {
+	$scope.test;
+	$scope.userNotSelected=true;
 	$scope.regionSelected;
 	$scope.countrySelected;
 	$scope.catalogSelected;
@@ -11,9 +13,38 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.box;
 	$scope.loader=false;
 	$scope.saving=false;
+	$scope.fetching=false;
 	$scope.iseditable=false;
 	$scope.subscriptionData={"subscriptions":[]};
 	$scope.subscriptionDataCopy;
+	$scope.users = [
+		{
+			name: 'Jazeem', data: {"subscriptions":[]}
+		},
+		{
+			name: 'Jishnu', data: {"subscriptions":[]}
+		}
+	]
+	$scope.userSelected=$scope.users[0];
+	$scope.logout=function(){
+		$scope.userNotSelected=true;
+		$scope.userSelected.data=JSON.parse(JSON.stringify($scope.subscriptionData));
+		$scope.subscriptionData={"subscriptions":[]};
+		$scope.regionSelected="";
+		$scope.destroyCopy();
+		destroy_data();
+	}
+	$scope.login=function(){
+		$scope.userNotSelected=false;
+		$scope.subscriptionData=JSON.parse(JSON.stringify($scope.userSelected.data));
+		$scope.loader=true;
+		$scope.fetching=true;
+		var stopFetch=function(){
+		$scope.fetching=false
+		$scope.loader=false;
+		}
+		$timeout(stopFetch,1000);
+	}
 	$scope.isEmpty=function(x){
 	if(x.length==0)
 	return true;
@@ -1616,13 +1647,16 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
 	$scope.destroyCopy();
 	$scope.iseditable=false;
-	//$scope.regionSelected="";
+	$scope.regionSelected="";
+	destroy_data();
 	$scope.loader=true;
 	$scope.saving=true;
 		var saveSubs=function(){
 		$scope.saving=false;
+		$scope.fetching=true;
 		}
 		var fetchData=function(){
+		$scope.fetching=false;
 		$scope.loader=false;
 		}
 	
