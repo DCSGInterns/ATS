@@ -1616,6 +1616,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
 	$scope.destroyCopy();
 	$scope.iseditable=false;
+	destroy_data();
 	//$scope.regionSelected="";
 	$scope.loader=true;
 	$scope.saving=true;
