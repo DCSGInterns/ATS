@@ -60,20 +60,25 @@
 						<div id="subscribed_items">
 							<div class="row" id="search_sku">
 								<div class="input-group">
-								  <span class="input-group-addon glyphicon glyphicon-search"></span>
-								  <input type="text" class="form-control" placeholder="SKU Code" ng-model="searchText">
-								</div>
+									<span class="input-group-addon glyphicon glyphicon-search"></span>
+								  	<input type="text" class="form-control" placeholder="SKU Code" ng-model="searchText">
+								</div>								
+								<select class="form-control" ng-model="SKUType" ng-options="sku.type for sku in formData.regions[regionSelected].countries[countrySelected].catalogs[catalogSelected].SKUs">
+									<option value="">All types</option>
+								</select>
 							</div>
 							<div class="row" id="popover_table_header">
-								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">SKU CODE</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">SKU Code</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Type</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Sell Action Changed</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Activated or Deactivated</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Lead Time Changed</div>
 							</div>
 							<div id="popover_table_content">
-								<div class="row" ng-repeat="sku in formData.regions[regionSelected].countries[countrySelected].catalogs[catalogSelected].SKUs | filter:searchText">
+								<div class="row" ng-repeat="sku in formData.regions[regionSelected].countries[countrySelected].catalogs[catalogSelected].SKUs | filter:searchText" ng-show="(SKUType==null)||(sku.type==SKUType.type)">
 									{{setBoxes(sku.code)}}
-									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{sku.code}}</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{sku.code}}</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{sku.type}}</div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input type="checkbox" ng-model="box1" ng-change="editSubscriptions(box1,sku,formData.regions[regionSelected],formData.regions[regionSelected].countries[countrySelected],formData.regions[regionSelected].countries[countrySelected].catalogs[catalogSelected],0)"></div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input type="checkbox" ng-model="box2" ng-change="editSubscriptions(box2,sku,formData.regions[regionSelected],formData.regions[regionSelected].countries[countrySelected],formData.regions[regionSelected].countries[countrySelected].catalogs[catalogSelected],1)"></div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input type="checkbox" ng-model="box3" ng-change="editSubscriptions(box3,sku,formData.regions[regionSelected],formData.regions[regionSelected].countries[countrySelected],formData.regions[regionSelected].countries[countrySelected].catalogs[catalogSelected],2)"></div>

@@ -26,33 +26,11 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 		}
 	]
 	$scope.userSelected=$scope.users[0];
-	$scope.logout=function(){
-		$scope.userNotSelected=true;
-		$scope.userSelected.data=JSON.parse(JSON.stringify($scope.subscriptionData));
-		$scope.subscriptionData={"subscriptions":[]};
-		$scope.regionSelected="";
-		$scope.destroyCopy();
-		destroy_data();
-	}
-	$scope.login=function(){
-		$scope.userNotSelected=false;
-		$scope.subscriptionData=JSON.parse(JSON.stringify($scope.userSelected.data));
-		$scope.loader=true;
-		$scope.fetching=true;
-		var stopFetch=function(){
-		$scope.fetching=false
-		$scope.loader=false;
-		}
-		$timeout(stopFetch,1000);
-	}
 	$scope.isEmpty=function(x){
 	if(x.length==0)
 	return true;
 	else
 	return false;
-	}
-	$scope.createCopy=function(){
-	$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
 	}
 	$scope.destroyCopy=function(){
 	$scope.subscriptionDataCopy={"subscriptions":[]};
@@ -79,11 +57,11 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 		switch(id)
 		{
 			case 1:
-				return "APJ";
-			case 2:
-				return "EMEA";
-			case 3:
 				return "AMERICAS";
+			case 2:
+				return "APJ";
+			case 3:
+				return "EMEA";
 				
 		}
 	}
@@ -114,15 +92,18 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 								"SKUs": [
 									{
 										"code": "998-17427",
-										"description": "I3-3220, 4GB,1X4G, 1T, STND"
+										"description": "I3-3220, 4GB,1X4G, 1T, STND",
+										"type": "BTS"
 									},
 									{
 										"code": "998-17452",
-										"description": "I5-3330S, 8GB,2X4G, 1T, STND"
+										"description": "I5-3330S, 8GB,2X4G, 1T, STND",
+										"type": "BTO"
 									},
 									{
 										"code": "998-17420",
-										"description": "G2020, 4GB,1X4G, 500gb, STND"
+										"description": "G2020, 4GB,1X4G, 500gb, STND",
+										"type": "SNP"
 									}									
 								]
 							}
@@ -1571,6 +1552,26 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.iseditable=false;
 	$scope.regionSelected="";
 	destroy_data();
+	}
+	$scope.createCopy=function(){
+		$scope.clearData();
+		$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+	}
+	$scope.logout=function(){
+		$scope.userNotSelected=true;
+		$scope.userSelected.data=JSON.parse(JSON.stringify($scope.subscriptionData));
+		$scope.subscriptionData={"subscriptions":[]};
+	}
+	$scope.login=function(){
+		$scope.userNotSelected=false;
+		$scope.subscriptionData=JSON.parse(JSON.stringify($scope.userSelected.data));
+		$scope.loader=true;
+		$scope.fetching=true;
+		var stopFetch=function(){
+		$scope.fetching=false
+		$scope.loader=false;
+		}
+		$timeout(stopFetch,1000);
 	}
 	$scope.editCurrentSubscriptions=function(id,sub,eventId) {
 	var event=eventId-1;
