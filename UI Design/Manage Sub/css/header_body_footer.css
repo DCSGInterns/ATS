@@ -22,13 +22,12 @@ body
  color : white;
  font-size : 28px;
  padding-top : 10px;
- float: left;
- margin-left: 15px;
- margin-top: -3px;
+ width : 150px;
+
 }
 #header_content>img
 {
- float : left;
+ float : right;
  margin-top : 4px;
 }
 #footer
