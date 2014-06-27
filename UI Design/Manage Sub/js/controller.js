@@ -1545,16 +1545,23 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 
 	}
 	$scope.clearData=function(){
+		$scope.destroyCopy();
+		//$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
+		$scope.iseditable=false;
+		$scope.regionSelected="";
+		destroy_data();	
+	}
+	$scope.clearDataSelf=function(){
 	//destroy_data();
 	//$scope.testValue="data";
 	$scope.destroyCopy();
 	//$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
 	$scope.iseditable=false;
-	$scope.regionSelected="";
-	destroy_data();
+	//$scope.regionSelected="";
+	//destroy_data();
 	}
 	$scope.createCopy=function(){
-		$scope.clearData();
+		//$scope.clearData();
 		$scope.subscriptionDataCopy=JSON.parse(JSON.stringify($scope.subscriptionData));
 	}
 	$scope.logout=function(){
@@ -1664,6 +1671,8 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$timeout(saveSubs,1000);
 	$timeout(fetchData,2000);
 	}
+	
+
 	$scope.setBoxes=function(skuId){
 	
 	$scope.box1=false;
@@ -1679,4 +1688,4 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 		 {$scope.box3=true;}
 	}
 	}
-	});
+});
