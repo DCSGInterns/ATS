@@ -90,7 +90,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" ng-click="clearData()" data-dismiss="modal">CANCEL</button>
-					<button type="button" class="btn btn-primary" ng-click="save()" data-dismiss="modal">SAVE CHANGES</button>
+					<button type="button" class="btn btn-primary" ng-click="save(false)" data-dismiss="modal">SAVE CHANGES</button>
 				</div>
 			</div>
 		</div>
@@ -169,7 +169,7 @@
 		
 		<div id="edit_in" ng-show="iseditable">
 			<button class="btn btn-default" ng-click="clearDataSelf()">CANCEL</button> 
-			<button class="btn btn-primary" ng-click="save()">SAVE CHANGES</button>
+			<button class="btn btn-primary" ng-click="save(true)">SAVE CHANGES</button>
 		</div>
 	</div>
 	

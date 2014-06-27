@@ -98,7 +98,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 									{
 										"code": "998-17452",
 										"description": "I5-3330S, 8GB,2X4G, 1T, STND",
-										"type": "BTO"
+										"type": "BTP"
 									},
 									{
 										"code": "998-17420",
@@ -1589,11 +1589,11 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	else
 	{
 	sub.Events[event].IsActive=0;
-	if(sub.Events[0].IsActive==0 && sub.Events[1].IsActive==0 && sub.Events[2].IsActive==0)
+	/*if(sub.Events[0].IsActive==0 && sub.Events[1].IsActive==0 && sub.Events[2].IsActive==0)
 	{
 	var index=$scope.findIndex(sub.SkuId);
 	$scope.subscriptionDataCopy.subscriptions.splice(index,1);
-	}
+	}*/
 	}
 	
 	}
@@ -1643,20 +1643,21 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	{
 	var ssku=$scope.search(sku.code);
 	ssku.Events[event].IsActive=0;
-	if(ssku.Events[0].IsActive==0 && ssku.Events[1].IsActive==0 && ssku.Events[2].IsActive==0)
+	/*if(ssku.Events[0].IsActive==0 && ssku.Events[1].IsActive==0 && ssku.Events[2].IsActive==0)
 	{
 	var index=$scope.findIndex(sku.code);
 	$scope.subscriptionDataCopy.subscriptions.splice(index,1);
-	}
+	}*/
 	}
 	
 	}
-	$scope.save=function(){
-	$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
-	$scope.destroyCopy();
-	$scope.iseditable=false;
-	$scope.regionSelected="";
-	destroy_data();
+	$scope.save=function(isSelf){
+	
+	//$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
+	if(isSelf)
+		$scope.clearDataSelf();
+	else
+		$scope.clearData();
 	$scope.loader=true;
 	$scope.saving=true;
 		var saveSubs=function(){
@@ -1670,6 +1671,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	
 	$timeout(saveSubs,1000);
 	$timeout(fetchData,2000);
+	
 	}
 	
 
