@@ -2,7 +2,8 @@
 var ATS = angular.module('ATS', []);
 
 ATS.controller('ATSCtrl', function ($scope,$timeout) {
-	$scope.test;
+	$scope.testValue="hello";
+	$scope.displayMode=0;
 	$scope.userNotSelected=true;
 	$scope.regionSelected;
 	$scope.countrySelected;
@@ -19,7 +20,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.subscriptionDataCopy;
 	$scope.users = [
 		{
-			name: 'Jazeem', data: {"subscriptions":[]}
+			name: 'Jazeem', data: {"subscriptions":[{"SkuId":"998-19090","SkuDesc":"XPS10,RUS,32G,with KB-Dock","RegionCode":3,"BUCode":75,"BUName":"RUSSIA","CatalogID":"NULL","CatalogName":"RU","Events":[{"EventName":"Sell Action Changed","EventID":1,"IsActive":0},{"EventName":"Activated or Deactivated","EventID":2,"IsActive":0},{"EventName":"Lead Time Changed","EventID":3,"IsActive":0}]},{"SkuId":"998-19088","SkuDesc":"XPS10,RUS,64G,with KB-Dock","RegionCode":3,"BUCode":75,"BUName":"RUSSIA","CatalogID":"NULL","CatalogName":"RU","Events":[{"EventName":"Sell Action Changed","EventID":1,"IsActive":1},{"EventName":"Activated or Deactivated","EventID":2,"IsActive":0},{"EventName":"Lead Time Changed","EventID":3,"IsActive":0}]},{"SkuId":"998-10109","SkuDesc":"FGA,INSP LPT N5110,BTS","RegionCode":2,"BUCode":4,"BUName":"NEW ZEALAND","CatalogID":36102,"CatalogName":"NZ CNS","Events":[{"EventName":"Sell Action Changed","EventID":1,"IsActive":1},{"EventName":"Activated or Deactivated","EventID":2,"IsActive":0},{"EventName":"Lead Time Changed","EventID":3,"IsActive":0}]},{"SkuId":"210-35762","SkuDesc":"Inspiron N5110 Notebook","RegionCode":2,"BUCode":4,"BUName":"NEW ZEALAND","CatalogID":36102,"CatalogName":"NZ CNS","Events":[{"EventName":"Sell Action Changed","EventID":1,"IsActive":1},{"EventName":"Activated or Deactivated","EventID":2,"IsActive":0},{"EventName":"Lead Time Changed","EventID":3,"IsActive":0}]}]}
 		},
 		{
 			name: 'Jishnu', data: {"subscriptions":[]}
@@ -31,6 +32,25 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	return true;
 	else
 	return false;
+	}
+	$scope.shouldDisplay=function(events){
+		if($scope.displayMode==0)
+			retval=true;
+		else if($scope.displayMode==1)
+		{
+			if(events[0].IsActive+events[1].IsActive+events[2].IsActive==0)
+				retval=false;
+			else
+				retval=true;
+		}
+		else
+		{
+			if(events[0].IsActive+events[1].IsActive+events[2].IsActive==0)
+				retval=true;
+			else
+				retval=false;
+		}
+		return retval;
 	}
 	$scope.destroyCopy=function(){
 	$scope.subscriptionDataCopy={"subscriptions":[]};
@@ -1537,7 +1557,6 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	return -1;
 	
 	}
-	$scope.testValue="hello";
 	$scope.test=function(){
 		$scope.testValue="hi";
 		//$scope.subscriptionData.subscriptions.push({});
@@ -1653,7 +1672,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	}
 	$scope.save=function(isSelf){
 	
-	//$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
+	$scope.subscriptionData=JSON.parse(JSON.stringify($scope.subscriptionDataCopy));
 	if(isSelf)
 		$scope.clearDataSelf();
 	else

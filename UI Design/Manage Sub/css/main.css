@@ -120,11 +120,22 @@ font-size: 16px;
 	 color : white;
 	 float: right;
 	 margin-top: 30px;
-	 margin-right: 50px;
+	 margin-right: 0px;
 }
 #user>a{
 	 font-family: 'Roboto Condensed', sans-serif;
 	 font-size: 18px;
 	 color : white;
 	 cursor: pointer;
+}
+#display_mode{
+	position: relative;
+	width: 180px;
+	margin-top: 20px;
+	margin-right: 10px;
+	float: right;
+}
+#display_mode>select{
+	height: 35px;
+	font-size: 18px;
 }

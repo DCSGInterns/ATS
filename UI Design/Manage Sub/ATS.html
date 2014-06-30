@@ -101,7 +101,14 @@
 		<div id="header_content">
 			<img src="img/Dell_logo.png">
 			<div id="user" ng-hide="userNotSelected">Welcome, {{userSelected.name}} &nbsp &nbsp &nbsp<a ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></div>
-			<div id="header_title">ATS Subscriptions</div> 
+			<div id="header_title">ATS Subscriptions</div>
+			<div id="display_mode" ng-hide="isEmpty(subscriptionData.subscriptions) || userNotSelected || iseditable">
+				<select class="form-control" ng-model="displayMode">
+					<option value="0">ALL</option>
+					<option value="1">At Least 1 Event</option>
+					<option value="2">0 Events</option>
+				</select>
+			</div>
 		</div>
 	</div>
 	
@@ -135,7 +142,7 @@
 			</div>
 			<div ng-hide="iseditable">
 			  <div id="table_content">
-				<div class="row" ng-repeat="subscription in subscriptionData.subscriptions">
+				<div class="row" ng-repeat="subscription in subscriptionData.subscriptions" ng-show="shouldDisplay(subscription.Events)">
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{regionIdToName(subscription.RegionCode)}}</div>
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{subscription.BUName}}</div>
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{{subscription.CatalogName}}</div>
