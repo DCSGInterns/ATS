@@ -102,13 +102,6 @@
 			<img src="img/Dell_logo.png">
 			<div id="user" ng-hide="userNotSelected">Welcome, {{userSelected.name}} &nbsp &nbsp &nbsp<a ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></div>
 			<div id="header_title">ATS Subscriptions</div>
-			<div id="display_mode" ng-hide="isEmpty(subscriptionData.subscriptions) || userNotSelected || iseditable">
-				<select class="form-control" ng-model="displayMode">
-					<option value="0">ALL</option>
-					<option value="1">At Least 1 Event</option>
-					<option value="2">0 Events</option>
-				</select>
-			</div>
 		</div>
 	</div>
 	
@@ -127,8 +120,24 @@
 			</div>
 		</div>
 
-		<button class="btn btn-primary" id="edit-button" ng-click="changeEditState()" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions) || userNotSelected"><span class="glyphicon glyphicon-pencil"></span></button>
 
+		<div class="row" id="display_mode" ng-hide="isEmpty(subscriptionData.subscriptions) || userNotSelected || iseditable">
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				<select class="form-control" ng-model="displayMode">
+					<optgroup label="Display Mode">
+						<option value="0">ALL</option>
+						<option value="1">At Least 1 Event</option>
+						<option value="2">0 Event</option>
+					</optgroup>
+				</select>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<button class="btn btn-primary" id="edit_button" ng-click="changeEditState()" ng-hide="iseditable || isEmpty(subscriptionData.subscriptions) || userNotSelected"><span class="glyphicon glyphicon-pencil"></span></button>
+			</div>
+		</div>
+
+		
 		<div class="container" id="table" ng-hide="isEmpty(subscriptionData.subscriptions) || userNotSelected"> 
 			<div class="row" id="table_header">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">REGION</div>
