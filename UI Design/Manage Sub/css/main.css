@@ -127,6 +127,19 @@ font-size: 16px;
 #edit_button{
 	margin-left: 60%;
 	box-shadow : 1px 1px 5px black;
+	margin-left: 0px;
+	position : relative;
+	left : 65%;
+}
+
+.btn-group{
+	float: right;
+	position : relative;
+	left : 21%;
+}
+
+#test{
+	padding-right: 0px;
 }
 
 #display_mode{
@@ -134,7 +147,7 @@ font-size: 16px;
 	margin: 10px auto;
 }
 
-#display_mode>div>select{
-	box-shadow : 1px 1px 5px black;
-	margin-left: 30%;
+#display_mode>div>.btn-group{
+	width: 260px;
+	margin-right: 0px;
 }

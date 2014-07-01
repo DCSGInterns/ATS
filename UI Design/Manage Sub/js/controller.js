@@ -1,7 +1,8 @@
 
-var ATS = angular.module('ATS', []);
+var ATS = angular.module('ATS', ['ui.bootstrap']);
 
 ATS.controller('ATSCtrl', function ($scope,$timeout) {
+	$scope.radioModel = 'All';
 	$scope.testValue="hello";
 	$scope.displayMode=0;
 	$scope.userNotSelected=true;
@@ -34,6 +35,26 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	return false;
 	}
 	$scope.shouldDisplay=function(events){
+		switch($scope.radioModel)
+		{
+			case 'All':
+				return true;
+			case 'Atleast1':
+				if(events[0].IsActive+events[1].IsActive+events[2].IsActive==0)
+					return false;
+				else
+					return true;
+			case '0':
+				if(events[0].IsActive+events[1].IsActive+events[2].IsActive==0)
+					return true;
+				else
+					return false;
+		}
+
+
+
+
+		/*
 		if($scope.displayMode==0)
 			retval=true;
 		else if($scope.displayMode==1)
@@ -50,7 +71,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 			else
 				retval=false;
 		}
-		return retval;
+		return retval;*/
 	}
 	$scope.destroyCopy=function(){
 	$scope.subscriptionDataCopy={"subscriptions":[]};
