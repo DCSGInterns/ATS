@@ -136,6 +136,7 @@ font-size: 16px;
 	float: right;
 	position : relative;
 	left : 21%;
+	z-index: 1000;
 }
 
 #test{
