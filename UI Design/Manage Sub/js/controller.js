@@ -1551,7 +1551,47 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 									{
 										"code": "730-4299",
 										"description": "Inspiron 2020"
-									}									
+									},
+									{
+										"code": "730-0712",
+										"description": "Thank You for Choosing Dell"
+									},
+									{
+										"code": "225-2014",
+										"description": "XPS 14Z"
+									},
+									{
+										"code": "225-2657",
+										"description": "LATITUDE"
+									},
+									{
+										"code": "730-4181",
+										"description": "Inspiron 15R"
+									},
+									{
+										"code": "730-4299",
+										"description": "Inspiron 2020"
+									},
+									{
+										"code": "730-0712",
+										"description": "Thank You for Choosing Dell"
+									},
+									{
+										"code": "225-2014",
+										"description": "XPS 14Z"
+									},
+									{
+										"code": "225-2657",
+										"description": "LATITUDE"
+									},
+									{
+										"code": "730-4181",
+										"description": "Inspiron 15R"
+									},
+									{
+										"code": "730-4299",
+										"description": "Inspiron 2020"
+									}																		
 								]
 							}
 						]

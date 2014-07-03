@@ -151,3 +151,9 @@ font-size: 16px;
 	width: 260px;
 	margin-right: 0px;
 }
+
+#popover_table_content{
+	overflow:auto;
+	overflow-x:hidden;
+	max-height: 200px; 
+}
