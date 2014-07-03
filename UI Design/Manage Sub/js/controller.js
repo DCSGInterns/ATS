@@ -4,7 +4,6 @@ var ATS = angular.module('ATS', ['ui.bootstrap']);
 ATS.controller('ATSCtrl', function ($scope,$timeout) {
 	$scope.radioModel = 'All';
 	$scope.testValue="hello";
-	$scope.displayMode=0;
 	$scope.userNotSelected=true;
 	$scope.regionSelected;
 	$scope.countrySelected;
@@ -74,8 +73,9 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 		return retval;*/
 	}
 	$scope.destroyCopy=function(){
-	$scope.subscriptionDataCopy={"subscriptions":[]};
-	$scope.searchText="";
+		$scope.subscriptionDataCopy={"subscriptions":[]};
+		$scope.searchText="";
+		$scope.radioModel='All';
 	}
 	$scope.changeEditState=function(){
 	$scope.createCopy();
@@ -1613,6 +1613,7 @@ ATS.controller('ATSCtrl', function ($scope,$timeout) {
 		$scope.userNotSelected=false;
 		$scope.subscriptionData=JSON.parse(JSON.stringify($scope.userSelected.data));
 		$scope.loader=true;
+		$scope.radioModel='All';
 		$scope.fetching=true;
 		var stopFetch=function(){
 		$scope.fetching=false
