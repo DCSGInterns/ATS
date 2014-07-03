@@ -155,5 +155,5 @@ font-size: 16px;
 #popover_table_content{
 	overflow:auto;
 	overflow-x:hidden;
-	max-height: 200px; 
+	max-height: 20vh; 
 }
